@@ -17,7 +17,7 @@ import csv
 
 # Read cwb weather data
 
-cwb_filename = '106061232.csv'
+cwb_filename = 'sample_input.csv'
 
 data = []
 
@@ -44,8 +44,8 @@ with open(cwb_filename) as csvfile:
 
 # Retrive all data points which station id is "C0X260" as a list.
 
-target_data = list(filter(lambda item: item['PRES'] != '-99', data))
-target_data = list(filter(lambda item: item['PRES'] != '-999', target_data))
+target_data = list(filter(lambda item: float(item['PRES']) != -99, data))
+target_data = list(filter(lambda item: float(item['PRES']) != -999, target_data))
 
 # Retrive ten data points from the beginning.
 
@@ -60,6 +60,8 @@ target_data = list(filter(lambda item: item['PRES'] != '-999', target_data))
 #=======================================
 
 # Print result
+#print(target_data)
+
 sum = 0
 flag = 0
 for item in target_data:
@@ -68,10 +70,10 @@ for item in target_data:
       flag = flag + 1
 if flag == 0:
    s = "[['C0A880', 'none'],"
-   print(s, end=' ' )
+   print(s)
 else:
-   s = "[['C0A880', '{0}'],".format(sum/flag)
-   print(s, end=' ' )
+   s = "[['C0A880', {0}],".format(sum/flag)
+   print(s)
 
 sum = 0
 flag = 0
@@ -81,10 +83,10 @@ for item in target_data:
       flag = flag + 1
 if flag == 0:
    s = "[C0F9A0', 'none'],"
-   print(s, end=' ' )
+   print(s)
 else:
-   s = "['C0F9A0', '{0}'],".format(sum/flag)
-   print(s, end=' ' )
+   s = "['C0F9A0', {0}],".format(sum/flag)
+   print(s)
 
 sum = 0
 flag = 0
@@ -94,10 +96,10 @@ for item in target_data:
       flag = flag + 1
 if flag == 0:
    s = "['C0G640', 'none'],"
-   print(s, end=' ' )
+   print(s)
 else:
-   s = "['C0G640', '{0}'],".format(sum/flag)
-   print(s, end=' ' )
+   s = "['C0G640', {0}],".format(sum/flag)
+   print(s)
 
 sum = 0
 flag = 0
@@ -107,10 +109,10 @@ for item in target_data:
       flag = flag + 1
 if flag == 0:
    s = "['C0R190', 'none'],"
-   print(s, end=' ' )
+   print(s)
 else:
-   s = "['C0R190', '{0}'],".format(sum/flag)
-   print(s, end=' ' )
+   s = "['C0R190', {0}],".format(sum/flag)
+   print(s)
 
 sum = 0
 flag = 0
@@ -119,10 +121,10 @@ for item in target_data:
       sum = sum + float(item['PRES'])
       flag = flag + 1
 if flag == 0:
-   s = "['C0X260', 'none']],"
-   print(s, end=' ' )
+   s = "['C0X260', 'none']]"
+   print(s)
 else:
-   s = "['C0X260', '{0}']]".format(sum/flag)
+   s = "['C0X260', {0}]]".format(sum/flag)
    print(s)
 
 
